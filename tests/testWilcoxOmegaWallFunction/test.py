@@ -6,6 +6,7 @@ import numpy as np
 from fluidfoam import readof as rdf
 import os
 
+print(" --- running test rough channel wilcoxOmegaWallFunction --- ")
 
 success = True
 tolOm = 1e-3
