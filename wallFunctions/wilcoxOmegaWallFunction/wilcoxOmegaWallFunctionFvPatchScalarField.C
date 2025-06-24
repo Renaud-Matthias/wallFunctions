@@ -235,8 +235,6 @@ void wilcoxOmegaWallFunctionFvPatchScalarField::updateCoeffs()
 
     const label patchi = patch().index();
 
-    const tmp<volScalarField> tk = turbModel.k();
-
     const tmp<scalarField> tnuw = turbModel.nu(patchi);
     const scalarField& nuw = tnuw();
 
