@@ -76,7 +76,7 @@ for i, time in enumerate(timeList):
 
 omWilcox[:] = omegaWilcox(ustarArr)
 
-relErr = (omWall - omWilcox) / omWilcox
+relErr = np.abs(omWall - omWilcox) / omWilcox
 
 if np.any(relErr > tolOm):
     success = False

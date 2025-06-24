@@ -63,8 +63,6 @@ PIMPLE
     nOuterCorrectors         1;
     nCorrectors              1;
     nNonOrthogonalCorrectors 0;
-    correctAlpha             0;
-    nAlphaCorr               0;
     pRefCell                 0;
     pRefValue                0;
 }
