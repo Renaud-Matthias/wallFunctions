@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::WilcoxomegaWallFunctionFvPatchScalarField
+    Foam::wilcoxOmegaWallFunctionFvPatchScalarField
 
 Group
     grpWallFunctions
@@ -68,12 +68,12 @@ Usage
     \endverbatim
 
 SourceFiles
-    WilcoxomegaWallFunctionFvPatchScalarField.C
+    wilcoxOmegaWallFunctionFvPatchScalarField.C
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef WilcoxomegaWallFunctionFvPatchScalarField_H
-#define WilcoxomegaWallFunctionFvPatchScalarField_H
+#ifndef wilcoxOmegaWallFunctionFvPatchScalarField_H
+#define wilcoxOmegaWallFunctionFvPatchScalarField_H
 
 #include "fixedValueFvPatchField.H"
 
@@ -85,19 +85,16 @@ namespace Foam
 class turbulenceModel;
 
 /*---------------------------------------------------------------------------*\
-             Class WilcoxomegaWallFunctionFvPatchScalarField Declaration
+             Class wilcoxOmegaWallFunctionFvPatchScalarField Declaration
 \*---------------------------------------------------------------------------*/
 
-class WilcoxomegaWallFunctionFvPatchScalarField
+class wilcoxOmegaWallFunctionFvPatchScalarField
 :
     public fixedValueFvPatchField<scalar>
 {
 protected:
 
     // Protected data
-
-        //- Tolerance used in weighted calculations
-        static scalar tolerance_;
 
          //- kn coefficient (roughness)
         scalar kn_;
@@ -108,18 +105,6 @@ protected:
         //- Von Karman constant
         scalar kappa_;
 
-        //- E coefficient
-        scalar E_;
-
-        //- beta1 coefficient
-        scalar beta1_;
-
-        //- Y+ at the edge of the laminar sublayer
-        scalar yPlusLam_;
-
-        //- Local copy of turbulence G field
-        scalarField G_;
-
         //- Local copy of turbulence omega field
         scalarField omega_;
 
@@ -128,9 +113,6 @@ protected:
 
         //- Master patch ID
         label master_;
-
-        //- List of averaging corner weights
-        List<List<scalar>> cornerWeights_;
 
 
     // Protected Member Functions
@@ -145,32 +127,10 @@ protected:
         //  wall function patches
         virtual void setMaster();
 
-        //- Create the averaging weights for cells which are bounded by
-        //  multiple wall function faces
-        virtual void createAveragingWeights();
-
         //- Helper function to return non-const access to an omega patch
-        virtual WilcoxomegaWallFunctionFvPatchScalarField& omegaPatch
+        virtual wilcoxOmegaWallFunctionFvPatchScalarField& omegaPatch
         (
             const label patchi
-        );
-
-        //- Main driver to calculate the turbulence fields
-        virtual void calculateTurbulenceFields
-        (
-            const turbulenceModel& turbulence,
-            scalarField& G0,
-            scalarField& omega0
-        );
-
-        //- Calculate the omega and G
-        virtual void calculate
-        (
-            const turbulenceModel& turbulence,
-            const List<scalar>& cornerWeights,
-            const fvPatch& patch,
-            scalarField& G,
-            scalarField& omega
         );
 
         //- Return non-const access to the master patch ID
@@ -189,14 +149,14 @@ public:
     // Constructors
 
         //- Construct from patch and internal field
-        WilcoxomegaWallFunctionFvPatchScalarField
+        wilcoxOmegaWallFunctionFvPatchScalarField
         (
             const fvPatch&,
             const DimensionedField<scalar, volMesh>&
         );
 
         //- Construct from patch, internal field and dictionary
-        WilcoxomegaWallFunctionFvPatchScalarField
+        wilcoxOmegaWallFunctionFvPatchScalarField
         (
             const fvPatch&,
             const DimensionedField<scalar, volMesh>&,
@@ -204,20 +164,20 @@ public:
         );
 
         //- Construct by mapping given
-        // WilcoxomegaWallFunctionFvPatchScalarField
+        // wilcoxOmegaWallFunctionFvPatchScalarField
         //  onto a new patch
-        WilcoxomegaWallFunctionFvPatchScalarField
+        wilcoxOmegaWallFunctionFvPatchScalarField
         (
-            const WilcoxomegaWallFunctionFvPatchScalarField&,
+            const wilcoxOmegaWallFunctionFvPatchScalarField&,
             const fvPatch&,
             const DimensionedField<scalar, volMesh>&,
             const fvPatchFieldMapper&
         );
 
         //- Construct as copy
-        WilcoxomegaWallFunctionFvPatchScalarField
+        wilcoxOmegaWallFunctionFvPatchScalarField
         (
-            const WilcoxomegaWallFunctionFvPatchScalarField&
+            const wilcoxOmegaWallFunctionFvPatchScalarField&
         );
 
         //- Construct and return a clone
@@ -225,14 +185,14 @@ public:
         {
             return tmp<fvPatchScalarField>
             (
-                new WilcoxomegaWallFunctionFvPatchScalarField(*this)
+                new wilcoxOmegaWallFunctionFvPatchScalarField(*this)
             );
         }
 
         //- Construct as copy setting internal field reference
-        WilcoxomegaWallFunctionFvPatchScalarField
+        wilcoxOmegaWallFunctionFvPatchScalarField
         (
-            const WilcoxomegaWallFunctionFvPatchScalarField&,
+            const wilcoxOmegaWallFunctionFvPatchScalarField&,
             const DimensionedField<scalar, volMesh>&
         );
 
@@ -244,7 +204,7 @@ public:
         {
             return tmp<fvPatchScalarField>
             (
-                new WilcoxomegaWallFunctionFvPatchScalarField(*this, iF)
+                new wilcoxOmegaWallFunctionFvPatchScalarField(*this, iF)
             );
         }
 
@@ -252,9 +212,6 @@ public:
     // Member functions
 
         // Access
-
-            //- Return non-const access to the master's G field
-            scalarField& G(bool init = false);
 
             //- Return non-const access to the master's omega field
             scalarField& omega(bool init = false);
@@ -264,19 +221,6 @@ public:
 
             //- Update the coefficients associated with the patch field
             virtual void updateCoeffs();
-
-            //- Update the coefficients associated with the patch field
-            virtual void updateWeightedCoeffs(const scalarField& weights);
-
-            //- Manipulate matrix
-            virtual void manipulateMatrix(fvMatrix<scalar>& matrix);
-
-            //- Manipulate matrix with given weights
-            virtual void manipulateMatrix
-            (
-                fvMatrix<scalar>& matrix,
-                const scalarField& weights
-            );
 
 
         // I-O

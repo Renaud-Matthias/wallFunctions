@@ -1,4 +1,5 @@
-wilcoxOmegaWallFunction/WilcoxomegaWallFunctionFvPatchScalarField.C
-fuhrmanOmegaWallFunction/FuhrmanomegaWallFunctionFvPatchScalarField.C
+wilcoxOmegaWallFunction/wilcoxOmegaWallFunctionFvPatchScalarField.C
+fuhrmanOmegaWallFunction/fuhrmanOmegaWallFunctionFvPatchScalarField.C
+leeOmegaWallFunction/leeOmegaWallFunctionFvPatchScalarField.C
 
 LIB = $(FOAM_USER_LIBBIN)/libWilcoxOmegaWallFunction
