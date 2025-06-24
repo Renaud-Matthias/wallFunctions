@@ -79,7 +79,7 @@ omTend = rdf.readscalar("./", "latestTime", "omega")
 
 omFuhrman[:] = omegaFuhrman(ustarArr)
 
-relErr = (omWall - omFuhrman) / omFuhrman
+relErr = np.abs(omWall - omFuhrman) / omFuhrman
 
 
 fig = plt.figure(figsize=(10, 7))
@@ -89,7 +89,7 @@ axOm1 = fig.add_subplot(gs[:, 0])
 axOm1.plot(omTend, Zmesh, marker="x", color="#0072B2")
 axOm1.scatter(omWall[-1], 0, color="firebrick")
 # zoom on near wall areazmX1 = omWall[-1] - 70
-zmX1 = omWall[-1] - 70
+zmX1 = 100
 zmX2 = omWall[-1] + 20
 zmY1 = -0.002
 zmY2 = 0.003
@@ -98,17 +98,18 @@ zmAx = axOm1.inset_axes(
     xlim=(zmX1, zmX2), ylim=(zmY1, zmY2))
 zmAx.plot(omTend, Zmesh, marker="x", color="#0072B2")
 zmAx.scatter(omWall[-1], 0, color="firebrick")
+zmAx.grid()
 
 axOm2 = fig.add_subplot(gs[0, 1])
 axOm2.scatter(
-    timeArr, omWall, marker="x",
-    color="steelblue", label="wall value")
+    timeArr, omWall, marker="o",
+    color="firebrick", label="wall value")
 axOm2.scatter(
-    timeArr, omFC, marker="d",
-    color="forestgreen", label="first cell")
+    timeArr, omFC, marker="x",
+    color="steelblue", label="first cell")
 axOm2.scatter(
     timeArr, omFuhrman, marker="+",
-    color="firebrick", label="Fuhrman")
+    color="forestgreen", label="Fuhrman")
 
 axErr = fig.add_subplot(gs[1, 1])
 axErr.scatter(timeArr, relErr, color="steelblue")

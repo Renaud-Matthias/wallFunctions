@@ -6,6 +6,7 @@ import numpy as np
 from fluidfoam import readof as rdf
 import os
 
+print(" --- running test rough channel fuhrmanOmegaWallFunction --- ")
 
 success = True
 tolOm = 1e-3
@@ -76,7 +77,7 @@ for i, time in enumerate(timeList):
 
 omFuhrman[:] = omegaFuhrman(ustarArr)
 
-relErr = (omWall - omFuhrman) / omFuhrman
+relErr = np.abs(omWall - omFuhrman) / omFuhrman
 
 if np.any(relErr > tolOm):
     success = False
