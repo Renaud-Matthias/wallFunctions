@@ -117,9 +117,6 @@ protected:
         //- Master patch ID
         label master_;
 
-        //- List of averaging corner weights
-        List<List<scalar>> cornerWeights_;
-
 
     // Protected Member Functions
 
