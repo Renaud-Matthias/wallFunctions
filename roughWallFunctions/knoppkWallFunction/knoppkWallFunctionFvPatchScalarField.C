@@ -140,9 +140,9 @@ knoppkWallFunctionFvPatchScalarField
     fixedValueFvPatchField<scalar>(kwfpsf, iF),
     kn_(kwfpsf.kn_),
     wallCoeffs_(kwfpsf.wallCoeffs_),
-    initialised_(false){
+    initialised_(false)
     checkType();
-}
+{}
 
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
