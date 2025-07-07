@@ -53,7 +53,7 @@ def omegaKnopp(ustar, y1):
     """
     d0 = getD0(ustar)
     knP = kn * ustar / nuF  # roughness Reynolds number
-    omega = ustar  / (np.sqrt(betaStar) * kappa * d0)
+    omega = ustar / (np.sqrt(betaStar) * kappa * d0)
     limiter = 6 * nuF / (beta1 * y1**2)
     omega = np.where(omega < limiter, omega, limiter)
     return omega
@@ -155,7 +155,6 @@ axOm1.scatter(omWall[-1], 0, color="firebrick")
 axOm1.scatter(omKnopp[-1], 0, marker="+", color="forestgreen")
 # zoom on near wall areazmX1 = omWall[-1] - 70
 zmX1, zmX2, = axOm1.get_xlim()
-#zmX2 = omWall[-1] + 20
 zmY1 = -0.002
 zmY2 = 0.003
 zmAxOm1 = axOm1.inset_axes(
@@ -213,4 +212,3 @@ axErrOm.grid()
 fig.tight_layout()
 
 plt.show()
-

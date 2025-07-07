@@ -139,9 +139,9 @@ axK.scatter(
 axK.scatter(
     kKnopp[-1], 0, marker="+", color="forestgreen", label="formula")
 axK.legend()
+
 # zoom on near wall area
 zmX1, zmX2, = axK.get_xlim()
-#zmX2 = omWall[-1] + 20
 zmY1 = -0.002
 zmY2 = 0.003
 zmAxK = axK.inset_axes(
@@ -156,9 +156,8 @@ axOm1 = fig.add_subplot(gs[:, 1])
 axOm1.plot(omTend, Zmesh, marker="x", color="#0072B2")
 axOm1.scatter(omWall[-1], 0, marker="o", color="firebrick")
 axOm1.scatter(omLee[-1], 0, marker="+", color="forestgreen")
-# zoom on near wall areazmX1 = omWall[-1] - 70
+
 zmX1, zmX2, = axOm1.get_xlim()
-#zmX2 = omWall[-1] + 20
 zmY1 = -0.002
 zmY2 = 0.003
 zmAxOm1 = axOm1.inset_axes(

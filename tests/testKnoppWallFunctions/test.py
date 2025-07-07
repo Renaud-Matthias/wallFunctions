@@ -52,7 +52,7 @@ def omegaKnopp(ustar, y1):
     """
     d0 = getD0(ustar)
     knP = kn * ustar / nuF  # roughness Reynolds number
-    omega = ustar  / (np.sqrt(betaStar) * kappa * d0)
+    omega = ustar / (np.sqrt(betaStar) * kappa * d0)
     limiter = 6 * nuF / (beta1 * y1**2)
     omega = np.where(omega < limiter, omega, limiter)
     return omega

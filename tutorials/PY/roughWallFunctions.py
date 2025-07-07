@@ -151,6 +151,7 @@ def kKnoppEisfeld(ustar):
 class blendingFunction(ABC):
 
     blend_types = {}
+
     @classmethod
     def register_blend_type(cls, blend_type):
         def decorator(subclass):
@@ -179,7 +180,7 @@ class max(blendingFunction):
             kappa=0.41
     ):
         omVis = omegaVis(y1, nuF=nuF, beta1=beta1)
-        omLog= omegaLog(y1, k, betaStar=betaStar, kappa=kappa)
+        omLog = omegaLog(y1, k, betaStar=betaStar, kappa=kappa)
         return np.where(omVis > omLog, omVis, omLog)
 
 
@@ -199,7 +200,7 @@ class binomial2(blendingFunction):
             kappa=0.41
     ):
         omVis = omegaVis(y1, nuF=nuF, beta1=beta1)
-        omLog= omegaLog(y1, k, betaStar=betaStar, kappa=kappa)
+        omLog = omegaLog(y1, k, betaStar=betaStar, kappa=kappa)
         return (omVis**self.n + omLog**self.n)**(1/self.n)
 
 

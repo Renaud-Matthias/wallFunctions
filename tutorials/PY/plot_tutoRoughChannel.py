@@ -17,30 +17,30 @@ time = "latestTime"
 
 
 caseList = [
-    {"path":"../roughChannel/Wilcox",
-     "time":"latestTime",
-     "label":"Wilcox",
-     "ls":"solid",
-     "color":"#0072B2"},
-    {"path":"../roughChannel/Fuhrman",
-     "time":"latestTime",
-     "label":"Fuhrman",
-     "ls":"dashed",
-     "color":"#D55E00"},
-    {"path":"../roughChannel/Knopp",
-     "time":"latestTime",
-     "label":"Knopp",
-     "ls":"dashdot",
-     "color":"#009E73"},
-    {"path":"../roughChannel/Lee",
-     "time":"latestTime",
-     "label":"Lee",
-     "ls":"dotted",
-     "color":"#CC79A7"}]
+    {"path": "../roughChannel/Wilcox",
+     "time": "latestTime",
+     "label": "Wilcox",
+     "ls": "solid",
+     "color": "#0072B2"},
+    {"path": "../roughChannel/Fuhrman",
+     "time": "latestTime",
+     "label": "Fuhrman",
+     "ls": "dashed",
+     "color": "#D55E00"},
+    {"path": "../roughChannel/Knopp",
+     "time": "latestTime",
+     "label": "Knopp",
+     "ls": "dashdot",
+     "color": "#009E73"},
+    {"path": "../roughChannel/Lee",
+     "time": "latestTime",
+     "label": "Lee",
+     "ls": "dotted",
+     "color": "#CC79A7"}]
 
 # physical and experimental parameters/data
 ustarExp = 0.021  # experimental friction velocity
-nuF = 9.6e-7  #  water kinematic viscosity
+nuF = 9.6e-7  # water kinematic viscosity
 Hwater = 6.7e-2  # water height
 ksExp = 9.9e-3  # Nikuradse equivalent roughness height
 
@@ -84,7 +84,7 @@ for case in caseList:
     Ux = rdf.readvector(pathCase, time, "U")[0]
     axU.plot(
         Ux, Zmesh/Hwater, lw=lw, ls=ls, color=color, label=label)
-    
+
     # k, specific turbulent kinetic enery
     kField = rdf.readscalar(pathCase, time, "k")
     axK.plot(
